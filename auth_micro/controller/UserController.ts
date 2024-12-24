@@ -8,6 +8,12 @@ class UserController {
             where:{
                 id: id,
             },
+            select:{
+                id: true,
+                name: true,
+                email: true,
+
+            }
         });
         return res.json({user: user})
     }
