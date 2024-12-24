@@ -1,0 +1,75 @@
+                                            // MicroService Project //
+
+* AuthMicroService :
+  Description: Handles user authentication and management using MongoDB as the data store and Prisma for schema generation.
+
+    * API Endpoints:
+
+    *   User Registration: POST /auth/register
+        Controller: AuthController.register
+        User Login: POST /auth/login
+        Controller: AuthController.login
+        Get Authenticated User (Private): GET /auth/user
+        Middleware: authMiddleware
+        Controller: AuthController.user
+        Get User by ID: GET /getUser/:id
+        Controller: UserController.getUser
+        Get Multiple Users: POST /getUsers
+        Controller: UserController.getUsers
+
+    * Environment Variables:
+
+    * PORT: Service running port.
+      DATABASE_URL: MongoDB connection string.
+      JWT_SECRET: Secret key for JSON Web Tokens.
+      Run the Service: npm run dev
+
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+* PostMicroService :
+    Description: Manages posts (title and content) using PostgreSQL as the database, with Prisma for schema management. Requires AuthMicroService for user authentication.
+
+    * API Endpoints:
+
+    * Fetch All Posts: GET /post
+      Controller: PostController.index
+      Create a Post (Authenticated): POST /post/store
+      Middleware: authMiddleware
+      Controller: PostController.store
+      
+    *   Environment Variables:
+
+    *   PORT: Service running port.
+        DATABASE_URL: PostgreSQL connection string (e.g., postgresql://postgres:[pwd]@localhost:5432/db_name?schema=public).
+        JWT_SECRET: Secret key for JSON Web Tokens.
+        AUTH_MICRO_URL: URL of AuthMicroService for authentication.
+        Run the Service: npm run dev
+
+    * Generate Migration for Post DB: npx prisma migrate dev --name=post_table
+
+
+* General Notes
+* Tech Stack:
+
+Both services leverage Node.js, TypeScript, and Prisma.
+Database choice:
+MongoDB for AuthMicroService
+PostgreSQL for PostMicroService
+Separation of Concerns:
+
+The services are designed with clear boundaries; AuthMicroService focuses on user authentication, while PostMicroService handles post creation and management.
+Integration:
+
+The PostMicroService uses the AuthMicroService to authenticate users via the AUTH_MICRO_URL.
+Future Enhancements:
+
+Add more APIs or services (e.g., notifications, analytics).
+Implement caching for frequently accessed data.
+Best Practices:
+
+Secure .env files to avoid accidental exposure of sensitive credentials.
+Set up proper logging and monitoring for each microservice.
+This explanation can serve as documentation or an overview for your project. If you'd like, I can expand it further or adjust it for use in a README file.
+
+Note. Both Project basically for using user by post with different db(Mongodb, PostgresSql)
