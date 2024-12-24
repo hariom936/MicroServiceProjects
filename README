@@ -1,6 +1,7 @@
                                             // MicroService Project //
 
 * AuthMicroService :
+
   Description: Handles user authentication and management using MongoDB as the data store and Prisma for schema generation.
 
     * API Endpoints:
@@ -28,6 +29,7 @@
 //////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 * PostMicroService :
+
     Description: Manages posts (title and content) using PostgreSQL as the database, with Prisma for schema management. Requires AuthMicroService for user authentication.
 
     * API Endpoints:
@@ -52,24 +54,23 @@
 * General Notes
 * Tech Stack:
 
-Both services leverage Node.js, TypeScript, and Prisma.
-Database choice:
-MongoDB for AuthMicroService
-PostgreSQL for PostMicroService
-Separation of Concerns:
+* Both services leverage Node.js, TypeScript, and Prisma.
+* Database choice:
+    MongoDB for AuthMicroService
+    PostgreSQL for PostMicroService
 
-The services are designed with clear boundaries; AuthMicroService focuses on user authentication, while PostMicroService handles post creation and management.
-Integration:
+* Separation of Concerns:
+  The services are designed with clear boundaries; AuthMicroService focuses on user authentication, while PostMicroService handles post creation and management.
 
-The PostMicroService uses the AuthMicroService to authenticate users via the AUTH_MICRO_URL.
-Future Enhancements:
+* Integration:
+  The PostMicroService uses the AuthMicroService to authenticate users via the AUTH_MICRO_URL.
 
-Add more APIs or services (e.g., notifications, analytics).
-Implement caching for frequently accessed data.
-Best Practices:
+* Future Enhancements:
+  Add more APIs or services (e.g., notifications, analytics).
+  Implement caching for frequently accessed data.
 
-Secure .env files to avoid accidental exposure of sensitive credentials.
-Set up proper logging and monitoring for each microservice.
-This explanation can serve as documentation or an overview for your project. If you'd like, I can expand it further or adjust it for use in a README file.
+* Best Practices:
+  Secure .env files to avoid accidental exposure of sensitive credentials.
+  Set up proper logging and monitoring for each microservice.
+  This explanation can serve as documentation or an overview for your project. If you'd like, I can expand it further or adjust it for use in a README file.
 
-Note. Both Project basically for using user by post with different db(Mongodb, PostgresSql)
